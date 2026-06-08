@@ -1,9 +1,10 @@
-const Core = require("./src/core");
+const cache = require("./src/cache");
+const error = require("./src/error");
+const compression = require("./src/compression");
 
-module.exports = {
-  init: (config = {}) => {
-    const boost = new Core(config);
-    boost.init();
-    return boost;
-  }
+module.exports = function(app, options = {}) {
+
+  cache(app, options);
+  compression(app, options);
+  error(app);
 };
